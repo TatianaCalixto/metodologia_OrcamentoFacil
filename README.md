@@ -34,7 +34,8 @@ O OrçaFácil é um app de controle financeiro pessoal (backend FastAPI, mobile 
 |---|---|
 | [orcafacil_blueprint_completo.md](orcafacil_blueprint_completo.md) | Blueprint funcional do produto — escrito uma vez |
 | [PROMPT_INICIAL_CLAUDE_CODE.md](PROMPT_INICIAL_CLAUDE_CODE.md) | Prompt-modelo do agente executor (com regras inegociáveis) |
-| [analise_po_ux_ui_orcafacil.md](analise_po_ux_ui_orcafacil.md) | Análise de fim de Fase 1 pelos papéis Product Owner, UX e UI Designer |
+| [analise_po_ux_ui_orcafacil.md](analise_po_ux_ui_orcafacil.md) | Análise de fim de Fase 1 pelos papéis Product Owner, UX e UI Designer (motivou a Fase 2) |
+| [analise_architect_qa_security_devops_orcafacil.md](analise_architect_qa_security_devops_orcafacil.md) | Análise de fim de Fase 2 pelos papéis Software Architect, QA, Security e DevOps Engineers (motivou a Fase 3) |
 | [papeis_ideais_produto_orcafacil.md](papeis_ideais_produto_orcafacil.md) | Catálogo de papéis ideais (PO, UX, UI, Architect, QA, Security, DevOps, etc.) usado como referência para conduzir as análises de fim de fase |
 | [orcafacil_planejamento_sprints.xlsx](orcafacil_planejamento_sprints.xlsx) | Planilha de planejamento (fonte única de verdade operacional) |
 
@@ -79,11 +80,13 @@ Controle financeiro pessoal: cadastro de contas e categorias, lançamento de rec
 ├── README.md                                 # você está aqui
 ├── orcafacil_blueprint_completo.md           # blueprint funcional
 ├── PROMPT_INICIAL_CLAUDE_CODE.md             # prompt do agente executor
-├── analise_po_ux_ui_orcafacil.md             # análise de fim de Fase 1
+├── analise_po_ux_ui_orcafacil.md             # análise de fim de Fase 1 (PO/UX/UI)
+├── analise_architect_qa_security_devops_orcafacil.md  # análise de fim de Fase 2 (Architect/QA/Security/DevOps)
 ├── papeis_ideais_produto_orcafacil.md        # catálogo de papéis (referência das análises)
 ├── orcafacil_planejamento_sprints.xlsx       # planilha (fonte única de verdade)
 ├── gerar_planilha_sprints.py                 # gera a planilha do zero
 ├── adicionar_sprints_17_18_19.py             # anexa Fase 2 sem destruir Fase 1
+├── adicionar_sprints_20_21_22_23.py          # anexa Fase 3 + DEC-003 (auto-commit docs)
 ├── docs/                                     # planilha renderizada em MD
 │   ├── sprints_index.md
 │   ├── sprints_visao_geral.md
@@ -121,10 +124,11 @@ Controle financeiro pessoal: cadastro de contas e categorias, lançamento de rec
 
 ## Status atual
 
-- **Fase 1 (MVP)** — Sprints 0 a 16: **Concluída** (Backend + Mobile + Painel + Deploy inicial).
-- **Fase 2 (lacunas identificadas pela análise PO/UX/UI)** — Sprints 17 a 19: **Concluída**.
-- **Total**: 20 sprints, 83 tarefas (80 Concluídas + 3 Canceladas — as canceladas estavam todas em deploy/infra na Sprint 16, com decisão registrada de "manter local por enquanto"; ver [docs/sprints_impedimentos.md](docs/sprints_impedimentos.md)).
-- **Próximo passo**: análise de fim de Fase 2 pelos próximos papéis a definir (Architect, QA, Security ou outros), gerando Fase 3 se houver gaps.
+- **Fase 1 (MVP)** — Sprints 0 a 16: **Concluída** (Backend + Mobile + Painel + Deploy inicial; 3 tarefas de deploy/produção canceladas com decisão registrada).
+- **Fase 2 (lacunas UX/UI)** — Sprints 17 a 19: **Concluída** (gestão de Contas em todas as superfícies, painel com cadastro completo, polimento UX).
+- **Fase 3 (hardening técnico)** — Sprints 20 a 22 + Sprint 23 opcional: **Pendente**. 22 tarefas obrigatórias + 5 opcionais, 29 itens de teste. Foco: hardening de segurança (Dependabot, headers, refresh revogável), pipeline mobile, observabilidade, deploy público (retomando S16) e backup automatizado. Motivada pela [análise técnica](analise_architect_qa_security_devops_orcafacil.md).
+- **Total acumulado**: 24 sprints planejadas (20 Concluídas + 4 Pendentes), 105 tarefas no backlog, 75 itens no plano de testes, 3 decisões formais registradas.
+- **Nova política a partir da Fase 3** (DEC-003): ao fim de cada fase, o agente executor regera os docs renderizados, atualiza o README, faz commit padronizado e **pausa para confirmação humana antes do `git push`**.
 
 ---
 

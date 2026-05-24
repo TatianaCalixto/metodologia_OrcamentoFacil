@@ -48,3 +48,14 @@ Sprint 18 — Painel web com cadastro completo: paridade funcional entre painel 
 Sprint 19 — Polimento UX/UI: atalho de Nova Transação no Dashboard, onboarding pós-cadastro, tokens de tema, dark mode real, item ativo no drawer, snackbar de saldo, picker de ícone.
 Regras inegociáveis seguem valendo: testes obrigatórios antes de concluir, regressão de saldo sempre verde, sem decisões fora da planilha. A bateria S05-T05 deve continuar verde após cada sprint da Fase 2.
 Justificativa registrada em DEC-001 na aba Decisões.
+
+FASE 3 — Aberta em 2026-05-24
+Apos Fase 1 (MVP, S0-16) e Fase 2 (UX/UI, S17-19), abrimos a Fase 3 para hardening tecnico identificado pelos papeis Software Architect, QA Engineer, Security Engineer e DevOps Engineer (documento analise_architect_qa_security_devops_orcafacil.md).
+Fase 3 = Sprints 20, 21, 22 (S23 opcional). Linhas destacadas em verde claro nas abas Visao Geral, Backlog e Plano de Testes.
+Sprint 20 — Hardening Seguranca e Dependencias: Dependabot, pip-audit, rate limit por user, headers de seguranca, refresh token revogavel, senha forte.
+Sprint 21 — Pipeline Mobile + Observabilidade: GitHub Actions Flutter, logging agregado, /healthz, /metrics.
+Sprint 22 — Deploy e Backup (retomar S16): Postgres gerenciado, backend e painel deployados, APK release, backup automatizado, docs/DEPLOY.md.
+Sprint 23 (OPCIONAL) — Robustez ponta a ponta: /v1, cliente Dart gerado, E2E Playwright, seed_demo, RUNBOOK.
+NOVA ROTINA OBRIGATORIA DE FIM-DE-FASE (DEC-003): ao concluir TODAS as tarefas de uma fase, o agente DEVE: (1) verificar planilha consistente; (2) re-renderizar docs/; (3) atualizar README.md com status; (4) git add + commit padronizado; (5) PARAR e pedir OK humano antes do push. Detalhes em DEC-003 (aba Decisoes) e no PROMPT_INICIAL.
+Regras inegociaveis seguem valendo: testes obrigatorios, regressao de saldo verde, sem decisoes fora da planilha. test_balance_regression_full_flow deve continuar verde apos cada sprint da Fase 3.
+Justificativa em DEC-003.

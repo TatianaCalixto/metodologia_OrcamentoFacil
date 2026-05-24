@@ -67,3 +67,32 @@
 | 19 | mobile drawer | Widget | Item ativo do drawer reflete a rota atual | frontend_OrcamentoFacil/mobile/test/features/dashboard/drawer_test.dart | Concluída | 2026-05-24 | 4 widget tests novos no group "AppNavigationDrawer highlight": /transactions → index 1, /budgets → index 4, subrota /transactions/new → index 1, rotas fora retornam null. |
 | 19 | mobile transactions | Widget | Snackbar pós-transação exibe novo saldo formatado BRL | frontend_OrcamentoFacil/mobile/test/features/transactions/transaction_form_screen_test.dart | Concluída | 2026-05-24 | 3 widget tests no group "snackbar de saldo": criação BRL, edição BRL, fallback se accounts API falhar. |
 | 19 | mobile categories | Widget | Picker de ícone abre, seleciona e persiste corretamente | frontend_OrcamentoFacil/mobile/test/features/categories/ | Concluída | 2026-05-24 | category_form_screen_test.dart: picker abre, seleção muda estado, submit envia string correta. category_visuals_test.dart: mapeamento string→IconData + fallback + cobertura ≥20 ícones. 5 testes verdes no total dos novos. |
+| 20 | deps | Manual | Dependabot dispara PR para vuln injetada propositalmente |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 20 | ci | Integração | pip-audit quebra CI em vuln High/Critical |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 20 | rate-limit | Integração | /imports/csv 429 ao estourar 1/min; reset apos janela |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 20 | rate-limit | Integração | /transactions POST 429 ao estourar 60/min por user |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 20 | headers | Integração | 5 security headers presentes em todas as responses |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 20 | headers | Integração | HSTS so em ENVIRONMENT=production |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 20 | auth | Integração | Refresh com token revogado retorna 401 |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 20 | auth | Integração | Logout revoga refresh atual |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 20 | auth | Unitário | Politica de senha rejeita fraca / aceita forte |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 21 | ci-mobile | Manual | Workflow Flutter verde em push; quebra em analyze warning |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 21 | ci-mobile | Manual | Gate de cobertura 70% quebra com PR reduzindo cobertura |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 21 | ci-mobile | Manual | Build APK debug verde; artefato disponivel |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 21 | logging | Integração | Logs enviados ao agregador quando env vars setadas |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 21 | logging | Integração | Sem env vars, comportamento atual preservado (stdout) |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 21 | /healthz | Integração | /healthz retorna status DB e latencia |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 21 | /healthz | Integração | /healthz retorna 503 quando DB down |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 21 | /metrics | Integração | /metrics expoe counters Prometheus apos requests |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 22 | deploy-db | Smoke | alembic upgrade head contra DB gerenciado |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 22 | deploy-db | Smoke | register + login contra DATABASE_URL remoto |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 22 | deploy-api | Smoke | smoke_prod.py contra URL publica verde |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 22 | deploy-api | Manual | Auto-deploy dispara em commit para main |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 22 | deploy-panel | Manual | Painel publico carrega e loga contra prod |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 22 | deploy-mobile | Manual | APK release instala e loga contra prod |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 22 | backup | Manual | Restore do ultimo backup em DB de teste local |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 23 | /v1 | Integração | Todos endpoints servem em /v1; redirects funcionam |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 23 | client-dart | Manual | Cliente Dart gerado diff-clean apos regeneracao |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 23 | e2e | E2E | Playwright: login -> criar conta -> criar transacao -> ver relatorio |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 23 | seed | Unitário | seed_demo idempotente (rodar 2x nao duplica) |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 23 | runbook | Manual | 5 cenarios revistos mentalmente e validados |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
