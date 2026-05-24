@@ -1,0 +1,44 @@
+# ============================================================
+# OrçaFácil — portfolio repo (raiz da metodologia)
+# ============================================================
+
+# --- Repositórios de código (separados, têm git próprio) ---
+# Comente as duas linhas abaixo se quiser adicioná-los como
+# submodules em vez de manter como "see also" no README.
+backend_OrcamentoFacil/
+frontend_OrcamentoFacil/
+
+# --- Planilha XLSX ---
+# Escolha A (default): a planilha é binária e renderizada em docs/sprints_*.md
+# a cada mudança. Não vai no diff. Para snapshots, use git tag/release.
+# Escolha B: comente a linha abaixo se quiser versionar o XLSX.
+*.xlsx
+
+# --- Python / build / venv ---
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+build/
+dist/
+*.egg-info/
+
+# --- IDE / OS ---
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# --- Segredos ---
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+secrets/
+
+# --- Outputs locais do agente ---
+.claude/
