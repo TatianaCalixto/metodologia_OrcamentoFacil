@@ -22,7 +22,7 @@ O OrçaFácil é um app de controle financeiro pessoal (backend FastAPI, mobile 
 - O **histórico de decisões existe** — aba `Decisões` da planilha documenta por que cada escolha técnica foi feita ([docs/sprints_decisoes.md](docs/sprints_decisoes.md)).
 - A **separação produto vs. método é explícita** — o agente executor não inventa features; quem inventa é o ciclo de análise por papéis.
 - A **regressão é uma trava operacional**, não uma intenção — sem teste verde, tarefa não vira "Concluída". Cobertura ≥ 80% obrigatória no backend.
-- **Fases existem e são respeitadas** — Sprints 0-16 = Fase 1 (MVP), Sprints 17-19 = Fase 2 (lacunas identificadas pela análise PO/UX/UI). O agente da Fase 2 não toca em código da Fase 1.
+- **Fases existem e são respeitadas** — Sprints 0-16 = Fase 1 (MVP), Sprints 17-19 = Fase 2 (lacunas UX/UI), Sprints 20-23 = Fase 3 (hardening técnico). O agente de cada fase não toca em código das fases anteriores.
 
 ---
 
@@ -44,8 +44,8 @@ O OrçaFácil é um app de controle financeiro pessoal (backend FastAPI, mobile 
 | Arquivo | Aba da planilha |
 |---|---|
 | [docs/sprints_index.md](docs/sprints_index.md) | Índice |
-| [docs/sprints_visao_geral.md](docs/sprints_visao_geral.md) | Visão geral das 20 sprints (Fase 1 + Fase 2) |
-| [docs/sprints_backlog.md](docs/sprints_backlog.md) | 83 tarefas com critérios, dependências e testes obrigatórios |
+| [docs/sprints_visao_geral.md](docs/sprints_visao_geral.md) | Visão geral das 24 sprints (Fases 1 a 3) |
+| [docs/sprints_backlog.md](docs/sprints_backlog.md) | 105 tarefas com critérios, dependências e testes obrigatórios |
 | [docs/sprints_plano_testes.md](docs/sprints_plano_testes.md) | Plano de testes (regressão, integração, unitários, widget, smoke) |
 | [docs/sprints_decisoes.md](docs/sprints_decisoes.md) | Log de decisões técnicas |
 | [docs/sprints_impedimentos.md](docs/sprints_impedimentos.md) | Log de impedimentos — 3 casos reais em que o agente parou, perguntou e aguardou decisão (prova viva do protocolo "em dúvida, parar") |
@@ -126,8 +126,8 @@ Controle financeiro pessoal: cadastro de contas e categorias, lançamento de rec
 
 - **Fase 1 (MVP)** — Sprints 0 a 16: **Concluída** (Backend + Mobile + Painel + Deploy inicial; 3 tarefas de deploy/produção canceladas com decisão registrada).
 - **Fase 2 (lacunas UX/UI)** — Sprints 17 a 19: **Concluída** (gestão de Contas em todas as superfícies, painel com cadastro completo, polimento UX).
-- **Fase 3 (hardening técnico)** — Sprints 20 a 22 + Sprint 23 opcional: **Em andamento**. A Sprint 20 (Hardening de Segurança e Dependências) está em curso — 4 de 6 tarefas concluídas: Dependabot nos 2 repos, `pip-audit` no CI com gate por severidade, rate limiting por usuário nas mutações e middleware de headers de segurança HTTP; faltam refresh token revogável (+ `/auth/logout`) e política de senha forte. As Sprints 21-22 (pipeline mobile, observabilidade, deploy público retomando S16, backup) e a 23 opcional seguem pendentes. Motivada pela [análise técnica](analise_architect_qa_security_devops_orcafacil.md).
-- **Total acumulado**: 24 sprints planejadas (20 Concluídas + 1 em andamento + 3 Pendentes), 105 tarefas no backlog, 75 itens no plano de testes, 4 decisões formais registradas.
+- **Fase 3 (hardening técnico)** — Sprints 20 a 22 + Sprint 23 opcional: **Em andamento**. A Sprint 20 (Hardening de Segurança e Dependências) está em curso — 4 de 6 tarefas concluídas: Dependabot nos 2 repos, `pip-audit` no CI com gate por severidade, rate limiting por usuário nas mutações e middleware de headers de segurança HTTP; faltam refresh token revogável (+ `/auth/logout`) e política de senha forte. As Sprints 21-22 (pipeline mobile, observabilidade, deploy público retomando S16, backup) e a 23 opcional seguem pendentes. **Decisão DEC-005 (2026-05-29):** o deploy fica adiado — o ambiente segue **local por enquanto**, então a Sprint 22 (deploy/backup) está deferida e será reaberta quando houver decisão de subir (mesmo tratamento dado à Sprint 16). Motivada pela [análise técnica](analise_architect_qa_security_devops_orcafacil.md).
+- **Total acumulado**: 24 sprints planejadas (20 Concluídas + 1 em andamento + 3 Pendentes, sendo a 22 deferida), 105 tarefas no backlog, 75 itens no plano de testes, 5 decisões formais registradas.
 - **Nova política a partir da Fase 3** (DEC-003): ao fim de cada fase, o agente executor regera os docs renderizados, atualiza o README, faz commit padronizado e **pausa para confirmação humana antes do `git push`**.
 
 ---
