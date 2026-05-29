@@ -73,8 +73,8 @@
 | 20 | rate-limit | Integração | /transactions POST 429 ao estourar 60/min por user |  | Concluída | 2026-05-29 | test_ratelimit_user.test_transactions_post_limite_60_por_min (61a -> 429). Verde local. + accounts/budgets/goals, GET livre e isolamento por usuario cobertos no mesmo arquivo. |
 | 20 | headers | Integração | 5 security headers presentes em todas as responses |  | Concluída | 2026-05-29 | test_security_headers: 4 headers base presentes no /health e ate em 404. Verde. |
 | 20 | headers | Integração | HSTS so em ENVIRONMENT=production |  | Concluída | 2026-05-29 | test_security_headers: HSTS presente com production=True e ausente caso contrario (mini-app). Verde. |
-| 20 | auth | Integração | Refresh com token revogado retorna 401 |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
-| 20 | auth | Integração | Logout revoga refresh atual |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 20 | auth | Integração | Refresh com token revogado retorna 401 |  | Concluída | 2026-05-29 | test_auth_logout.test_fluxo_register_login_refresh_logout_refresh_401. Verde. |
+| 20 | auth | Integração | Logout revoga refresh atual |  | Concluída | 2026-05-29 | test_auth_logout: logout revoga jti; idempotencia; auth obrigatoria; cleanup. Verde. |
 | 20 | auth | Unitário | Politica de senha rejeita fraca / aceita forte |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
 | 21 | ci-mobile | Manual | Workflow Flutter verde em push; quebra em analyze warning |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
 | 21 | ci-mobile | Manual | Gate de cobertura 70% quebra com PR reduzindo cobertura |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
