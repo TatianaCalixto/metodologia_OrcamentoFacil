@@ -126,8 +126,8 @@ Controle financeiro pessoal: cadastro de contas e categorias, lançamento de rec
 
 - **Fase 1 (MVP)** — Sprints 0 a 16: **Concluída** (Backend + Mobile + Painel + Deploy inicial; 3 tarefas de deploy/produção canceladas com decisão registrada).
 - **Fase 2 (lacunas UX/UI)** — Sprints 17 a 19: **Concluída** (gestão de Contas em todas as superfícies, painel com cadastro completo, polimento UX).
-- **Fase 3 (hardening técnico)** — Sprints 20 a 22 + Sprint 23 opcional: **Pendente**. 22 tarefas obrigatórias + 5 opcionais, 29 itens de teste. Foco: hardening de segurança (Dependabot, headers, refresh revogável), pipeline mobile, observabilidade, deploy público (retomando S16) e backup automatizado. Motivada pela [análise técnica](analise_architect_qa_security_devops_orcafacil.md).
-- **Total acumulado**: 24 sprints planejadas (20 Concluídas + 4 Pendentes), 105 tarefas no backlog, 75 itens no plano de testes, 3 decisões formais registradas.
+- **Fase 3 (hardening técnico)** — Sprints 20 a 22 + Sprint 23 opcional: **Em andamento**. A Sprint 20 (Hardening de Segurança e Dependências) está em curso — 4 de 6 tarefas concluídas: Dependabot nos 2 repos, `pip-audit` no CI com gate por severidade, rate limiting por usuário nas mutações e middleware de headers de segurança HTTP; faltam refresh token revogável (+ `/auth/logout`) e política de senha forte. As Sprints 21-22 (pipeline mobile, observabilidade, deploy público retomando S16, backup) e a 23 opcional seguem pendentes. Motivada pela [análise técnica](analise_architect_qa_security_devops_orcafacil.md).
+- **Total acumulado**: 24 sprints planejadas (20 Concluídas + 1 em andamento + 3 Pendentes), 105 tarefas no backlog, 75 itens no plano de testes, 4 decisões formais registradas.
 - **Nova política a partir da Fase 3** (DEC-003): ao fim de cada fase, o agente executor regera os docs renderizados, atualiza o README, faz commit padronizado e **pausa para confirmação humana antes do `git push`**.
 
 ---
