@@ -96,3 +96,14 @@
 | 23 | e2e | E2E | Playwright: login -> criar conta -> criar transacao -> ver relatorio |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 \| Sprint 23 opcional (backlog), nao executada nesta fase. |
 | 23 | seed | Unitário | seed_demo idempotente (rodar 2x nao duplica) |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 \| Sprint 23 opcional (backlog), nao executada nesta fase. |
 | 23 | runbook | Manual | 5 cenarios revistos mentalmente e validados |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 \| Sprint 23 opcional (backlog), nao executada nesta fase. |
+| 24 | backend | Regressão | Suíte async verde + test_balance_regression_full_flow verde após migração async |  | Pendente |  |  |
+| 24 | backend | Integração | UoW: 2 operações na mesma transação, erro na 2ª -> rollback total |  | Pendente |  |  |
+| 24 | banco | Migração | Índices novos: upgrade/downgrade reversível; query usa o índice |  | Pendente |  |  |
+| 25 | mobile | Unit | Models freezed: fromJson/toJson round-trip |  | Pendente |  |  |
+| 25 | mobile | Widget | AsyncView nos 3 estados (loading/empty/error) |  | Pendente |  |  |
+| 25 | mobile | Integração | Cache HTTP: GET hit/miss respeitando TTL |  | Pendente |  |  |
+| 26 | painel | Unit | Services com mock api.py + invalidação de cache pós-mutação |  | Pendente |  |  |
+| 26 | painel | Unit | transaction_form em modos create e edit |  | Pendente |  |  |
+| 27 | mobile | Widget | i18n renderiza em PT e EN [OPCIONAL] |  | Pendente |  |  |
+| 27 | mobile | Integração | Cache local persiste entre restarts (Hive) [OPCIONAL] |  | Pendente |  |  |
+| 27 | mobile | Integração | Deep link abre tela específica [OPCIONAL] |  | Pendente |  |  |

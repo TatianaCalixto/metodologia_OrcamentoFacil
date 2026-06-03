@@ -1,4 +1,4 @@
-# Prompt inicial — OrçaFácil (Fase 3)
+# Prompt inicial — OrçaFácil (Fase 4)
 
 > Copie tudo abaixo da linha `---` e cole no novo chat do Claude Code.
 > A pasta de trabalho dele deve ser a raiz do projeto (referenciada abaixo como `<PROJECT_ROOT>`).
@@ -6,32 +6,33 @@
 
 ---
 
-Você é o desenvolvedor responsável por executar a **FASE 3** do projeto **OrçaFácil**, um app de controle financeiro pessoal (backend FastAPI + mobile Flutter + painel Streamlit + PostgreSQL).
+Você é o desenvolvedor responsável por executar a **FASE 4** do projeto **OrçaFácil**, um app de controle financeiro pessoal (backend FastAPI + mobile Flutter + painel Streamlit + PostgreSQL).
 
-## Contexto: 2 fases já foram concluídas
+## Contexto: 3 fases já foram concluídas
 
 - **Fase 1 (MVP, Sprints 0-16)** — backend completo, mobile com todas as telas principais, painel Streamlit com login e relatórios. Executor: chat anterior.
-- **Fase 2 (UX/UI, Sprints 17-19)** — gestão de Contas em todas as superfícies, painel com paridade funcional ao mobile (cadastro/edição/exclusão de transação, import CSV), polimento UX (FAB no Dashboard, onboarding, tema escuro, design tokens). Executor: chat anterior.
+- **Fase 2 (UX/UI, Sprints 17-19)** — gestão de Contas em todas as superfícies, painel com paridade funcional ao mobile, polimento UX (FAB, onboarding, tema escuro, design tokens). Executor: chat anterior.
+- **Fase 3 (hardening técnico, Sprints 20-21; Sprint 22 deferida, 23 opcional)** — Dependabot + pip-audit, rate limit por usuário, headers de segurança HTTP, refresh token revogável + /auth/logout, política de senha forte; CI mobile (analyze + test + build APK, cobertura ≥ 70%), logging agregado, /healthz e /metrics. Deploy (S22) **deferido** por decisão (DEC-005/008). Executor: chat anterior.
 
-**Você não vai mexer no que está concluído.** Suas tarefas começam na Sprint 20. Use o código existente como referência de padrão.
+**Você não vai mexer no que está concluído sem que a tarefa peça.** Suas tarefas começam na Sprint 24. Use o código existente como referência de padrão.
 
-## Por que existe Fase 3
+## Por que existe Fase 4
 
-Em 2026-05-24, análise pelos papéis **Software Architect, QA Engineer, Security Engineer e DevOps Engineer** (documento `analise_architect_qa_security_devops_orcafacil.md`) identificou quatro problemas críticos/altos:
+Em 2026-05-24, análise pelos papéis **Backend, Mobile e Frontend/Web Engineer** (documento `analise_backend_mobile_frontend_orcafacil.md`), reforçada pela análise de produto do **PM** (documento `analise_pm_roadmap_orcafacil.md`, 2026-06-03), identificou débito técnico que a Fase 3 (segurança/infra) não cobre:
 
-- **P1 (🔴)**: Sem deploy ativo nem banco gerenciado — produto não roda fora do localhost.
-- **P2 (🔴)**: Mobile sem CI — regressão pode passar despercebida.
-- **P3 (🟠)**: Sem varredura de CVE em dependências.
-- **P4-P6 (🟠)**: Rate limit limitado, sem headers de segurança, observabilidade zero.
+- **P1 (🟠)**: Backend 100% síncrono — limita throughput em produção.
+- **P2 (🟠)**: Boilerplate manual no mobile (copyWith/json à mão) — fonte silenciosa de bugs.
+- **P3 (🟠)**: Duplicação inter-páginas no painel Streamlit.
+- **P4 (🟠)**: `db.commit()` dentro do service quebra o padrão Unit-of-Work.
 
-Mais problemas catalogados como P7-P14 em severidade média/baixa.
+Mais problemas catalogados como P5-P14 em severidade média/baixa.
 
-A Fase 3 fecha P1-P6 em 3 sprints obrigatórias + 1 opcional:
+A Fase 4 fecha esse débito em 3 sprints obrigatórias + 1 opcional:
 
-- **Sprint 20** — Hardening de Segurança e Dependências: fecha P3, P4, P5, P8.
-- **Sprint 21** — Pipeline Mobile e Observabilidade: fecha P2, P6, P11.
-- **Sprint 22** — Deploy e Backup (retomar S16 cancelado): fecha P1, P10.
-- **Sprint 23 (OPCIONAL)** — Robustez ponta a ponta: fecha P7, P9, P12, P14. Tratar como backlog — só executar se você (humano) autorizar explicitamente.
+- **Sprint 24** — Refatoração e Async no Backend: fecha P1, P4, P5, P6, P11, P14.
+- **Sprint 25** — Code Generation e Qualidade Mobile: fecha P2, P7, P9, P12.
+- **Sprint 26** — DRY no Painel e Componentes Reutilizáveis: fecha P3, P10, P13.
+- **Sprint 27 (OPCIONAL)** — Offline-first e i18n no Mobile: fecha P8. Tratar como backlog — só executar se você (humano) autorizar explicitamente.
 
 ## Documentação verdade
 
@@ -40,19 +41,17 @@ Tudo que você precisa está em `<PROJECT_ROOT>`:
 1. **`orcafacil_blueprint_completo.md`** — visão funcional do produto. Continua válido.
 2. **`papeis_ideais_produto_orcafacil.md`** — catálogo de papéis usados como referência das análises.
 3. **`analise_po_ux_ui_orcafacil.md`** — análise de fim da Fase 1.
-4. **`analise_architect_qa_security_devops_orcafacil.md`** — análise que motivou a Fase 3. **Leia para entender o "por quê".**
-5. **`orcafacil_planejamento_sprints.xlsx`** — **sua fonte única de verdade operacional**. Tem 6 abas: Instruções, Visão Geral, Backlog, Plano de Testes, Impedimentos, Decisões.
-   - Linhas da Fase 1 = sem destaque.
-   - Linhas da Fase 2 = amarelo claro.
-   - **Linhas da Fase 3 = verde claro.**
-   - Sprints da Fase 3 vêm prefixadas com `[FASE 3]` no nome.
+4. **`analise_architect_qa_security_devops_orcafacil.md`** — análise que motivou a Fase 3.
+5. **`analise_backend_mobile_frontend_orcafacil.md`** — análise de engenharia que motivou a Fase 4. **Leia (seção 7) para entender o "por quê" e o detalhe de cada tarefa.**
+6. **`analise_pm_roadmap_orcafacil.md`** — análise de produto (PM) com o roadmap das próximas fases (4 a 7).
+7. **`orcafacil_planejamento_sprints.xlsx`** — **sua fonte única de verdade operacional**. Tem 6 abas: Instruções, Visão Geral, Backlog, Plano de Testes, Impedimentos, Decisões.
+   - Sprints da Fase 4 vêm prefixadas com `[FASE 4]` no nome.
 
 Antes de qualquer coisa, **leia, em ordem**:
 
-1. A nova seção "FASE 3" no final da aba **Instruções**.
-2. A aba **Visão Geral** (especialmente as 4 últimas linhas — sprints 20, 21, 22, 23).
-3. As entradas **DEC-002** e **DEC-003** na aba **Decisões** (abertura da Fase 2 e política de auto-commit).
-4. A aba **Backlog** filtrada por Status = Pendente.
+1. A aba **Visão Geral** (especialmente as 4 últimas linhas — sprints 24, 25, 26, 27).
+2. As entradas **DEC-003** (política de auto-commit / fim-de-fase) e **DEC-010** (abertura da Fase 4) na aba **Decisões**.
+3. A aba **Backlog** filtrada por Status = Pendente.
 
 Snippet para abrir a planilha:
 
@@ -71,8 +70,8 @@ for tid, sprint, titulo in pendentes:
 
 ## Como trabalhar (protocolo obrigatório)
 
-1. **Ler a aba Visão Geral** para entender o estado macro (especialmente sprints 20-23).
-2. **Localizar a próxima tarefa Pendente na aba Backlog**, respeitando a coluna **Dependências** — nunca pular ordem. A primeira tarefa esperada é **S20-T01**.
+1. **Ler a aba Visão Geral** para entender o estado macro (especialmente sprints 24-27).
+2. **Localizar a próxima tarefa Pendente na aba Backlog**, respeitando a coluna **Dependências** — nunca pular ordem. A primeira tarefa esperada é **S24-T01**.
 3. Marcar a tarefa como **Em andamento** e preencher **Data Início** (formato AAAA-MM-DD).
 4. **Executar exatamente o que está em Descrição e Critérios de Aceitação**. Sem adicionar features extras, sem refatorar o que não foi pedido.
 5. **Escrever todos os testes listados em "Testes Obrigatórios" ANTES de marcar a tarefa como concluída.** Sem testes verdes a tarefa não é concluída.
@@ -84,16 +83,16 @@ for tid, sprint, titulo in pendentes:
 
 ## 🚨 ROTINA OBRIGATÓRIA DE FIM-DE-FASE (DEC-003)
 
-Quando **TODAS** as tarefas de uma fase estiverem Concluídas ou Canceladas (ou seja, quando a Sprint 22 fechar — ou Sprint 23 se aprovada), você **deve** executar a rotina abaixo, **antes** de declarar a Fase 3 fechada. A rotina tem 4 blocos: **A** (encerrar planilha) → **B** (atualizar documentação de metodologia via skill `portfolio-docs`) → **C** (commit) → **D** (pausar e pedir OK pro push).
+Quando **TODAS** as tarefas de uma fase estiverem Concluídas ou Canceladas (ou seja, quando a Sprint 26 fechar — ou Sprint 27 se aprovada), você **deve** executar a rotina abaixo, **antes** de declarar a Fase 4 fechada. A rotina tem 4 blocos: **A** (encerrar planilha) → **B** (atualizar documentação de metodologia via skill `portfolio-docs`) → **C** (commit) → **D** (pausar e pedir OK pro push).
 
 ---
 
 ### Bloco A — Encerrar a fase tecnicamente
 
 **A1.** Verificar consistência da planilha:
-- Aba Visão Geral: todas as sprints 20-22 (e 23 se executada) com Status = Concluída.
-- Aba Backlog: todas as tarefas da Fase 3 com Status = Concluída ou Cancelada.
-- Aba Plano de Testes: todos os itens da Fase 3 com Status = Concluída ou justificativa explícita em Observações.
+- Aba Visão Geral: todas as sprints 24-26 (e 27 se executada) com Status = Concluída.
+- Aba Backlog: todas as tarefas da Fase 4 com Status = Concluída ou Cancelada.
+- Aba Plano de Testes: todos os itens da Fase 4 com Status = Concluída ou justificativa explícita em Observações.
 
 **A2.** Re-renderizar os docs MD a partir da planilha (skill `portfolio-docs`, asset `render_xlsx_to_md.py`):
 ```powershell
@@ -110,11 +109,11 @@ python "%USERPROFILE%\.claude\skills\portfolio-docs\assets\render_xlsx_to_md.py"
 Esta é a **documentação viva do portfólio** — a razão de existir do repositório. Siga o workflow da skill `portfolio-docs` (em `~/.claude/skills/portfolio-docs/SKILL.md`). Resumo dos passos aplicáveis aqui:
 
 **B1.** Atualizar `README.md`:
-- **Seção "Status atual"**: mover Fase 3 de Pendente para Concluída; atualizar contagens (sprints / tarefas Concluídas + Canceladas / itens de teste); apontar próximos passos sugeridos (ex.: "análise de fim de Fase 3 pelos papéis X, Y → Fase 4 se houver gaps").
-- **Seção "Artefatos principais"**: adicionar linha para a nova análise de fim de Fase 3 (`analise_<papeis>_orcafacil.md`) se ainda não estiver lá.
-- **Seção "Aprendizados"**: adicionar 1-2 bullets novos com aprendizados concretos da Fase 3 (ex.: o que o pipeline mobile revelou, o que o deploy mostrou que não estava previsto, etc.). Sem inflar — só o que for verdadeiramente novo.
+- **Seção "Status atual"**: mover a Fase 4 para Concluída; atualizar contagens (sprints / tarefas Concluídas + Canceladas / itens de teste); apontar próximos passos sugeridos (ex.: "Fase 5 — Recorrência, Engajamento e Relatórios, conforme `analise_pm_roadmap_orcafacil.md`").
+- **Seção "Artefatos principais"**: adicionar linha para qualquer análise/documento novo gerado na fase, se ainda não estiver lá.
+- **Seção "Aprendizados"**: adicionar 1-2 bullets novos com aprendizados concretos da Fase 4 (ex.: o que a migração async revelou; o ganho real do code-gen no mobile; o que a camada de services destravou no painel). Sem inflar — só o que for verdadeiramente novo.
 
-**B2.** Se a Fase 3 introduziu artefatos novos (ex.: `docs/DEPLOY.md`, `docs/RUNBOOK.md` — só se Sprint 23 executada), adicionar linha correspondente na seção "Artefatos principais" e na "Estrutura do repositório" do README.
+**B2.** Se a Fase 4 introduziu artefatos novos (ex.: `docs/PADROES.md` da S24, componentes novos do painel/mobile), adicionar linha correspondente na seção "Artefatos principais" e na "Estrutura do repositório" do README.
 
 **B3.** Saneamento — varrer todos os arquivos textuais em `<PROJECT_ROOT>` (exceto subrepos gitignorados) procurando:
 - Caminhos absolutos (`d:\`, `C:\`, `/Users/`, `/home/`) — substituir por `<PROJECT_ROOT>` ou caminho relativo.
@@ -151,15 +150,13 @@ git add README.md docs/ analise_*.md PROMPT_INICIAL_CLAUDE_CODE.md
 
 **C3.** Commit com mensagem padronizada:
 ```
-docs: fechamento da Fase 3 — hardening técnico
+docs: fechamento da Fase 4 — qualidade de código sustentável
 
-- Sprints 20, 21, 22 concluídas (e 23 se aplicável)
-- Backend hardenizado (deps, rate limit, headers, refresh revogável)
-- Mobile com CI ativo
-- Observabilidade ativada (logging agregado, /healthz, /metrics)
-- Backend, painel e mobile em produção pública
-- Backup automatizado Postgres
-- Análise técnica (Architect/QA/Security/DevOps) commitada
+- Sprints 24, 25, 26 concluídas (e 27 se aplicável)
+- Backend migrado para async + Unit-of-Work na borda + schemas DRY + índices
+- Mobile com freezed/json_serializable (fim do boilerplate) + AsyncView + cache HTTP
+- Painel com camada de services + componentes reutilizáveis (DRY)
+- Bateria de regressão de saldo verde; cobertura mantida (backend ≥ 80%, mobile ≥ 70%)
 - Documentação viva regenerada
 - Total: <X> sprints / <Y> tarefas Concluídas + <Z> Canceladas
 
@@ -176,7 +173,7 @@ Co-Authored-By: <seu identificador> <noreply@anthropic.com>
 - Confirmação de que o saneamento (B3) foi feito.
 
 **D2.** Mensagem padrão para pedir confirmação:
-> "Fase 3 fechada. Commit `<hash>` pronto na branch `main`. Arquivos no commit:
+> "Fase 4 fechada. Commit `<hash>` pronto na branch `main`. Arquivos no commit:
 > ```
 > <output de git show --stat HEAD>
 > ```
@@ -216,10 +213,10 @@ Decisões técnicas não óbvias aprovadas vão para a aba **Decisões** com con
 ## Limites do seu papel
 
 - Você executa o que está na planilha. **Não cria tarefas novas, não muda escopo, não pula sprints, não inverte dependências.**
-- Sprint 23 é **opcional** — não execute sem autorização explícita do humano.
+- Sprint 27 é **opcional** — não execute sem autorização explícita do humano.
 - Identificou tarefa mal descrita ou em conflito? Vira impedimento — não conserte sozinho.
 - Mudanças na planilha: apenas Status, Datas, Observações, Impedimento?, e novas linhas em Impedimentos/Decisões.
-- **Não tocar em código das Fases 1 e 2** salvo o estritamente necessário.
+- **A Fase 4 é refatoração:** diferente das fases anteriores, aqui você VAI alterar código existente (backend/mobile/painel) — mas **apenas** conforme a tarefa da planilha, **sem mudar comportamento observável** (contratos da API, telas) e **mantendo todos os testes verdes**. Não refatore o que a tarefa não pede.
 
 ## Stack e ambiente
 
@@ -227,8 +224,8 @@ Decisões técnicas não óbvias aprovadas vão para a aba **Decisões** com con
 - **Mobile**: Flutter, Riverpod, go_router, Dio, fl_chart, flutter_secure_storage.
 - **Painel**: Streamlit + pandas + openpyxl + plotly.
 - **Infra**: Docker Compose com Postgres local; deploy alvo: Render/Railway + Supabase/Neon.
-- **CI**: GitHub Actions (backend já ativo; mobile a criar na Sprint 21).
-- **Testes**: pytest, pytest-asyncio, httpx (backend); flutter_test + mocktail (mobile); pytest com mocks (painel); pip-audit (Sprint 20); Playwright (Sprint 23 opcional).
+- **CI**: GitHub Actions ativo nos 2 repos (backend + mobile). Cobertura backend ≥ 80%; cobertura mobile ≥ 70% (gate).
+- **Testes**: pytest + pytest-asyncio + httpx (backend — suíte migra para modo async na S24); flutter_test + mocktail (mobile); pytest com mocks (painel). Bateria perene: `test_balance_regression_full_flow`.
 - **Estrutura existente**:
   - `<PROJECT_ROOT>/backend_OrcamentoFacil/backend/app/` — 10 módulos completos.
   - `<PROJECT_ROOT>/backend_OrcamentoFacil/panel/` — 5 páginas Streamlit.
@@ -237,8 +234,10 @@ Decisões técnicas não óbvias aprovadas vão para a aba **Decisões** com con
 ## Comece agora
 
 1. Confirme que você consegue abrir e ler a planilha (rode o snippet Python acima e me mostre as 3 primeiras tarefas Pendentes).
-2. Leia a aba **Decisões** (especialmente DEC-003) e o documento `analise_architect_qa_security_devops_orcafacil.md` (seções 7 e 8) para entender o contexto da Fase 3 e a nova rotina de fim-de-fase.
-3. Liste para mim, em até 5 linhas, qual é a **primeira tarefa Pendente** (esperado: S20-T01) e quais arquivos você pretende criar/editar para executá-la.
+2. Leia a aba **Decisões** (especialmente DEC-003 e DEC-010) e o documento `analise_backend_mobile_frontend_orcafacil.md` (seção 7 — tarefas e testes) para entender o contexto da Fase 4 e a rotina de fim-de-fase.
+3. Liste para mim, em até 5 linhas, qual é a **primeira tarefa Pendente** (esperado: S24-T01) e quais arquivos você pretende criar/editar para executá-la.
 4. **Aguarde meu OK** antes de começar a implementação.
 
-A partir desse OK, siga o protocolo até concluir as Sprints 20, 21 e 22 — e ao fim execute a rotina obrigatória de fim-de-fase (7 passos acima). Sprint 23 só com autorização explícita.
+A partir desse OK, siga o protocolo até concluir as Sprints 24, 25 e 26 — e ao fim execute a rotina obrigatória de fim-de-fase (7 passos acima). Sprint 27 só com autorização explícita.
+
+⚠️ **Atenção especial na Sprint 24 (migração para async):** é a tarefa mais arriscada da fase (lazy loading, sessions, `db.get()` → `await`). Se a bateria `test_balance_regression_full_flow` quebrar, **pare e investigue** — nunca prossiga com a suíte vermelha.
