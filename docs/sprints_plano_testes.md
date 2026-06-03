@@ -75,15 +75,15 @@
 | 20 | headers | Integração | HSTS so em ENVIRONMENT=production |  | Concluída | 2026-05-29 | test_security_headers: HSTS presente com production=True e ausente caso contrario (mini-app). Verde. |
 | 20 | auth | Integração | Refresh com token revogado retorna 401 |  | Concluída | 2026-05-29 | test_auth_logout.test_fluxo_register_login_refresh_logout_refresh_401. Verde. |
 | 20 | auth | Integração | Logout revoga refresh atual |  | Concluída | 2026-05-29 | test_auth_logout: logout revoga jti; idempotencia; auth obrigatoria; cleanup. Verde. |
-| 20 | auth | Unitário | Politica de senha rejeita fraca / aceita forte |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
-| 21 | ci-mobile | Manual | Workflow Flutter verde em push; quebra em analyze warning |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
-| 21 | ci-mobile | Manual | Gate de cobertura 70% quebra com PR reduzindo cobertura |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
-| 21 | ci-mobile | Manual | Build APK debug verde; artefato disponivel |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
-| 21 | logging | Integração | Logs enviados ao agregador quando env vars setadas |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
-| 21 | logging | Integração | Sem env vars, comportamento atual preservado (stdout) |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
-| 21 | /healthz | Integração | /healthz retorna status DB e latencia |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
-| 21 | /healthz | Integração | /healthz retorna 503 quando DB down |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
-| 21 | /metrics | Integração | /metrics expoe counters Prometheus apos requests |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
+| 20 | auth | Unitário | Politica de senha rejeita fraca / aceita forte |  | Concluída | 2026-05-29 | test_users_schemas: rejeita vazia/curta/so-letras/so-numeros; aceita forte. Verde. |
+| 21 | ci-mobile | Manual | Workflow Flutter verde em push; quebra em analyze warning |  | Concluída | 2026-05-29 | CI verde na main (a6a25d0). Analyze-break provado empiricamente: warning asset .env ausente deixou o CI vermelho; verde apos o fix. |
+| 21 | ci-mobile | Manual | Gate de cobertura 70% quebra com PR reduzindo cobertura |  | Concluída | 2026-05-29 | Gate de cobertura validado local: lcov 50%->exit1, 80%->exit0; cobertura real 73.0% passa. |
+| 21 | ci-mobile | Manual | Build APK debug verde; artefato disponivel |  | Concluída | 2026-05-29 | CI build job verde (6700ef6); artefato app-debug-apk (77.8MB, 7 dias) baixavel. Build validado local tambem. Instalar/abrir em emulador = follow-up manual humano. |
+| 21 | logging | Integração | Logs enviados ao agregador quando env vars setadas |  | Concluída | 2026-05-29 | test_logging_shipping: com vars, urlopen e chamado (POST + Bearer + JSON). Verde (mockado). |
+| 21 | logging | Integração | Sem env vars, comportamento atual preservado (stdout) |  | Concluída | 2026-05-29 | test_logging_shipping: sem vars, nenhum LogShippingHandler; so StreamHandler stdout. Verde. |
+| 21 | /healthz | Integração | /healthz retorna status DB e latencia |  | Concluída | 2026-05-29 | test_healthz: DB ok -> 200, database.status=up, latency_ms numerico. Verde. |
+| 21 | /healthz | Integração | /healthz retorna 503 quando DB down |  | Concluída | 2026-05-29 | test_healthz: get_db override (DB down) -> 503, database.status=down. Verde. |
+| 21 | /metrics | Integração | /metrics expoe counters Prometheus apos requests |  | Concluída | 2026-05-29 | test_metrics: /metrics formato Prometheus; http_requests_total do /health incrementa apos 3 requests. Verde. |
 | 22 | deploy-db | Smoke | alembic upgrade head contra DB gerenciado |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
 | 22 | deploy-db | Smoke | register + login contra DATABASE_URL remoto |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
 | 22 | deploy-api | Smoke | smoke_prod.py contra URL publica verde |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 |
