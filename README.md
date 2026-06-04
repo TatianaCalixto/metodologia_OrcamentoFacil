@@ -22,7 +22,7 @@ O OrçaFácil é um app de controle financeiro pessoal (backend FastAPI, mobile 
 - O **histórico de decisões existe** — aba `Decisões` da planilha documenta por que cada escolha técnica foi feita ([docs/sprints_decisoes.md](docs/sprints_decisoes.md)).
 - A **separação produto vs. método é explícita** — o agente executor não inventa features; quem inventa é o ciclo de análise por papéis.
 - A **regressão é uma trava operacional**, não uma intenção — sem teste verde, tarefa não vira "Concluída". Cobertura ≥ 80% obrigatória no backend.
-- **Fases existem e são respeitadas** — Sprints 0-16 = Fase 1 (MVP), Sprints 17-19 = Fase 2 (lacunas UX/UI), Sprints 20-23 = Fase 3 (hardening técnico). O agente de cada fase não toca em código das fases anteriores.
+- **Fases existem e são respeitadas** — Sprints 0-16 = Fase 1 (MVP), Sprints 17-19 = Fase 2 (lacunas UX/UI), Sprints 20-23 = Fase 3 (hardening técnico), Sprints 24-27 = Fase 4 (qualidade de código sustentável). O agente de cada fase não toca em código das fases anteriores além do que a tarefa pede.
 
 ---
 
@@ -36,7 +36,8 @@ O OrçaFácil é um app de controle financeiro pessoal (backend FastAPI, mobile 
 | [PROMPT_INICIAL_CLAUDE_CODE.md](PROMPT_INICIAL_CLAUDE_CODE.md) | Prompt-modelo do agente executor (com regras inegociáveis) |
 | [analise_po_ux_ui_orcafacil.md](analise_po_ux_ui_orcafacil.md) | Análise de fim de Fase 1 pelos papéis Product Owner, UX e UI Designer (motivou a Fase 2) |
 | [analise_architect_qa_security_devops_orcafacil.md](analise_architect_qa_security_devops_orcafacil.md) | Análise de fim de Fase 2 pelos papéis Software Architect, QA, Security e DevOps Engineers (motivou a Fase 3) |
-| [analise_backend_mobile_frontend_orcafacil.md](analise_backend_mobile_frontend_orcafacil.md) | Análise de engenharia (Backend/Mobile/Frontend) sobre qualidade de código sustentável — escrita antes da Fase 3; propõe a Fase 4 (merece releitura agora que a Fase 3 fechou) |
+| [analise_backend_mobile_frontend_orcafacil.md](analise_backend_mobile_frontend_orcafacil.md) | Análise de engenharia (Backend/Mobile/Frontend) sobre qualidade de código sustentável — motivou e detalhou a **Fase 4** (achados P1-P14) |
+| [analise_pm_roadmap_orcafacil.md](analise_pm_roadmap_orcafacil.md) | Análise de produto (PM) com o roadmap das próximas fases (4 a 7); reforçou a abertura da Fase 4 antes das fases de produto (DEC-010) |
 | [papeis_ideais_produto_orcafacil.md](papeis_ideais_produto_orcafacil.md) | Catálogo de papéis ideais (PO, UX, UI, Architect, QA, Security, DevOps, etc.) usado como referência para conduzir as análises de fim de fase |
 | [orcafacil_planejamento_sprints.xlsx](orcafacil_planejamento_sprints.xlsx) | Planilha de planejamento (fonte única de verdade operacional) |
 
@@ -45,11 +46,11 @@ O OrçaFácil é um app de controle financeiro pessoal (backend FastAPI, mobile 
 | Arquivo | Aba da planilha |
 |---|---|
 | [docs/sprints_index.md](docs/sprints_index.md) | Índice |
-| [docs/sprints_visao_geral.md](docs/sprints_visao_geral.md) | Visão geral das 24 sprints (Fases 1 a 3) |
-| [docs/sprints_backlog.md](docs/sprints_backlog.md) | 105 tarefas com critérios, dependências e testes obrigatórios |
+| [docs/sprints_visao_geral.md](docs/sprints_visao_geral.md) | Visão geral das 28 sprints (Fases 1 a 4) |
+| [docs/sprints_backlog.md](docs/sprints_backlog.md) | 127 tarefas com critérios, dependências e testes obrigatórios |
 | [docs/sprints_plano_testes.md](docs/sprints_plano_testes.md) | Plano de testes (regressão, integração, unitários, widget, smoke) |
 | [docs/sprints_decisoes.md](docs/sprints_decisoes.md) | Log de decisões técnicas |
-| [docs/sprints_impedimentos.md](docs/sprints_impedimentos.md) | Log de impedimentos — 3 casos reais em que o agente parou, perguntou e aguardou decisão (prova viva do protocolo "em dúvida, parar") |
+| [docs/sprints_impedimentos.md](docs/sprints_impedimentos.md) | Log de impedimentos — 4 casos reais em que o agente parou, perguntou e aguardou decisão (incl. IMP-004 na Fase 4: conflito entre dois critérios de aceitação) |
 | [docs/sprints_instrucoes.md](docs/sprints_instrucoes.md) | Protocolo de uso da planilha pelo agente |
 
 ### Scripts
@@ -61,8 +62,8 @@ O OrçaFácil é um app de controle financeiro pessoal (backend FastAPI, mobile 
 
 ### Código (repositórios irmãos)
 
-- **backend + painel Streamlit**: `backend_OrcamentoFacil/` _(repositório próprio)_
-- **mobile Flutter**: `frontend_OrcamentoFacil/` _(repositório próprio)_
+- **backend + painel Streamlit**: `backend_OrcamentoFacil/` _(repositório próprio)_ — pós-Fase 4: backend **assíncrono** (SQLAlchemy async + Unit-of-Work na borda), schemas DRY com `*Base`, índices derivados de queries reais, mensagens de erro PT-BR padronizadas (convenção em `backend_OrcamentoFacil/docs/PADROES.md`), e painel com camada de **services** + componentes reutilizáveis (`transaction_form`, `filters_bar`).
+- **mobile Flutter**: `frontend_OrcamentoFacil/` _(repositório próprio)_ — pós-Fase 4: models e estados com **freezed/json_serializable** (fim do boilerplate manual), componente compartilhado `AsyncView` e cache HTTP no Dio.
 
 A separação em dois repos foi uma decisão consciente registrada em [DEC-001 da aba Decisões](docs/sprints_decisoes.md). Eles existem como _evidência_ de que o método produziu código real, mas o foco deste repositório é a metodologia.
 
@@ -83,7 +84,8 @@ Controle financeiro pessoal: cadastro de contas e categorias, lançamento de rec
 ├── PROMPT_INICIAL_CLAUDE_CODE.md             # prompt do agente executor
 ├── analise_po_ux_ui_orcafacil.md             # análise de fim de Fase 1 (PO/UX/UI)
 ├── analise_architect_qa_security_devops_orcafacil.md  # análise de fim de Fase 2 (Architect/QA/Security/DevOps)
-├── analise_backend_mobile_frontend_orcafacil.md       # análise de engenharia (propõe Fase 4)
+├── analise_backend_mobile_frontend_orcafacil.md       # análise de engenharia (motivou a Fase 4)
+├── analise_pm_roadmap_orcafacil.md           # análise de produto (PM) — roadmap Fases 4 a 7
 ├── papeis_ideais_produto_orcafacil.md        # catálogo de papéis (referência das análises)
 ├── orcafacil_planejamento_sprints.xlsx       # planilha (fonte única de verdade)
 ├── gerar_planilha_sprints.py                 # gera a planilha do zero
@@ -123,6 +125,8 @@ Controle financeiro pessoal: cadastro de contas e categorias, lançamento de rec
 - **Não dar autonomia ao agente é o que mais economiza tempo.** Cada decisão tomada por mim em 30 segundos (que o agente teria que adivinhar em 5 minutos com chance de errar) é tempo ganho de duas pontas. Na Sprint 16, o agente parou 3 vezes em sequência (Supabase, deploy, APK Android) pedindo credenciais e decisão de plataforma — a resposta foi "manter local por enquanto" e as 3 tarefas foram canceladas em vez de mal-executadas. Está tudo em [docs/sprints_impedimentos.md](docs/sprints_impedimentos.md).
 - **Deferir é mais honesto do que cancelar — desde que o status reflita a decisão.** Na Fase 3 o deploy (Sprint 22) bateu no mesmo muro da Sprint 16 (contas externas, credenciais). Em vez de cancelar, foi *deferido* com decisão registrada (DEC-005/008/009): groundwork agnóstico de provedor pronto e commitado, execução real aguardando um "go". A armadilha apareceu junto: o agente chegou a marcar a S22 como "Em andamento" sem autorização — o status passou a *contradizer* a decisão. Lição: a fonte de verdade só vale se o **status bate com a decisão registrada**; auditar isso a cada fechamento de fase virou parte da rotina.
 - **O drift da documentação viva reaparece se o re-render não tiver gatilho fixo.** Os docs renderizados (`docs/*.md`) ficaram atrás do estado real mais de uma vez no meio da Fase 3, porque o re-render era acionado "quando alguém lembra". Re-renderizar como passo obrigatório de fechamento (DEC-003) corrige no fim; o ideal é cadência por sprint, não só por fase.
+- **"Em dúvida, parar" estende-se a "critérios de aceitação em conflito".** Na Fase 4, a tarefa de schemas DRY (S24-T03) pedia, ao mesmo tempo, _"Create/Update/Read herdam de um `*Base` sem repetição"_ e _"OpenAPI inalterado"_ — incompatíveis para schemas com entrada validada × saída pura. O agente não escolheu sozinho: registrou o conflito ([IMP-004](docs/sprints_impedimentos.md)), a humana decidiu, e a decisão virou [DEC-011](docs/sprints_decisoes.md) (contrato _funcional_ preservado, diff de OpenAPI documentado). Lição: critérios que se contradizem são um tipo de "dúvida" — pare e suba, não concilie no escuro.
+- **A rede de testes é o que torna uma refatoração arriscada possível sem medo.** A Sprint 24 (migração do backend inteiro para async — `AsyncSession`, `await` em tudo, Unit-of-Work na borda) só foi tocável porque a bateria de regressão de saldo + 96% de cobertura pegariam qualquer regressão. O risco real apareceu fora do código testado: o `psycopg` async não opera sobre o `ProactorEventLoop` (padrão do Windows) — descoberto só ao subir o servidor, resolvido usando os comandos canônicos (`uvicorn --reload`/`--workers`, que usam `SelectorEventLoop`). Migrações mecânicas em massa (async nos módulos, freezed nos models/estados, services no painel) foram paralelizadas com subagentes, com a suíte verde como porteiro.
 
 ---
 
@@ -131,8 +135,9 @@ Controle financeiro pessoal: cadastro de contas e categorias, lançamento de rec
 - **Fase 1 (MVP)** — Sprints 0 a 16: **Concluída** (Backend + Mobile + Painel + Deploy inicial; 3 tarefas de deploy/produção canceladas com decisão registrada).
 - **Fase 2 (lacunas UX/UI)** — Sprints 17 a 19: **Concluída** (gestão de Contas em todas as superfícies, painel com cadastro completo, polimento UX).
 - **Fase 3 (hardening técnico)** — Sprints 20 a 23: **Concluída** (com S22 deferida e S23 opcional não executada — DEC-009). **Sprint 20** (Hardening de Segurança e Dependências): Dependabot nos 2 repos, `pip-audit` no CI com gate por severidade, rate limiting por usuário nas mutações, middleware de headers de segurança HTTP, refresh token revogável (+ `/auth/logout`) e política de senha forte. **Sprint 21** (Pipeline Mobile e Observabilidade): GitHub Actions no repo Flutter (analyze + test + build APK, cobertura ≥ 70%), logging agregado externo, `/healthz` com DB ping e `/metrics` Prometheus-compatible. **Sprint 22** (deploy/backup): **deferida** (DEC-005/008) — o ambiente segue **local** e será reaberta quando houver decisão explícita de subir (mesmo tratamento dado à Sprint 16); o groundwork agnóstico de provedor (`backend/.env.example`, `scripts/pg_backup.sh`, `docs/DEPLOY.md`) foi produzido e commitado, mas a execução real aguarda go humano. **Sprint 23** (robustez ponta a ponta) segue como backlog opcional. Motivada pela [análise técnica](analise_architect_qa_security_devops_orcafacil.md).
-- **Próximos passos sugeridos**: releitura da [análise de engenharia](analise_backend_mobile_frontend_orcafacil.md) (escrita antes da Fase 3) para confirmar os achados P1-P14 e abrir a **Fase 4** (qualidade de código sustentável) — ou reabrir a Sprint 22 quando houver decisão de deploy.
-- **Total acumulado**: 24 sprints planejadas (Fases 1-2 = 20 Concluídas; Fase 3 = S20+S21 Concluídas, S22 deferida, S23 opcional), 105 tarefas no backlog, 75 itens no plano de testes, 9 decisões formais registradas.
+- **Fase 4 (qualidade de código sustentável)** — Sprints 24 a 27: **Concluída** (S27 opcional não executada). **Sprint 24** (Refatoração e Async no Backend): backend migrado para SQLAlchemy async + `async def`, Unit-of-Work na borda (commit/rollback em `get_db`), schemas DRY com `*Base`, migration de índices (incl. GIN `gin_trgm_ops` para busca), mensagens de erro PT-BR padronizadas (+ `docs/PADROES.md`) e paginação opcional em `/budgets` e `/goals`. **Sprint 25** (Code Generation e Qualidade Mobile): `freezed`/`json_serializable`/`build_runner` no CI, models e estados gerados (fim do boilerplate), componente `AsyncView`, cache HTTP no Dio (+ `Cache-Control` no backend), app icon/splash custom. **Sprint 26** (DRY no Painel): camada `panel/services/` com cache + invalidação, páginas consumindo services, componentes `transaction_form` e `filters_bar`, persistência de filtros. **Sprint 27** (offline-first/i18n) segue como backlog opcional. Motivada pela [análise de engenharia](analise_backend_mobile_frontend_orcafacil.md) e pela [análise PM](analise_pm_roadmap_orcafacil.md) (DEC-010); o conflito de critérios da S24-T03 foi resolvido em [DEC-011](docs/sprints_decisoes.md)/[IMP-004](docs/sprints_impedimentos.md).
+- **Próximos passos sugeridos**: **Fase 5 — Recorrência, Engajamento e Relatórios**, conforme a [análise PM](analise_pm_roadmap_orcafacil.md) — ou reabrir a Sprint 22 quando houver decisão de deploy.
+- **Total acumulado**: 28 sprints planejadas (Fases 1 a 4); 127 tarefas no backlog (**109 Concluídas + 3 Canceladas**; 15 Pendentes = S22 deferida + S23 e S27 opcionais), 103 itens no plano de testes, 11 decisões formais registradas.
 - **Nova política a partir da Fase 3** (DEC-003): ao fim de cada fase, o agente executor regera os docs renderizados, atualiza o README, faz commit padronizado e **pausa para confirmação humana antes do `git push`**.
 
 ---

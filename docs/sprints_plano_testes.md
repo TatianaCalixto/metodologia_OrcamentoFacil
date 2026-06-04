@@ -96,12 +96,12 @@
 | 23 | e2e | E2E | Playwright: login -> criar conta -> criar transacao -> ver relatorio |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 \| Sprint 23 opcional (backlog), nao executada nesta fase. |
 | 23 | seed | Unitário | seed_demo idempotente (rodar 2x nao duplica) |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 \| Sprint 23 opcional (backlog), nao executada nesta fase. |
 | 23 | runbook | Manual | 5 cenarios revistos mentalmente e validados |  | Pendente |  | FASE 3 — adicionado em 2026-05-24 \| Sprint 23 opcional (backlog), nao executada nesta fase. |
-| 24 | backend | Regressão | Suíte async verde + test_balance_regression_full_flow verde após migração async |  | Pendente |  |  |
-| 24 | backend | Integração | UoW: 2 operações na mesma transação, erro na 2ª -> rollback total |  | Pendente |  |  |
-| 24 | banco | Migração | Índices novos: upgrade/downgrade reversível; query usa o índice |  | Pendente |  |  |
-| 25 | mobile | Unit | Models freezed: fromJson/toJson round-trip |  | Pendente |  |  |
-| 25 | mobile | Widget | AsyncView nos 3 estados (loading/empty/error) |  | Pendente |  |  |
-| 25 | mobile | Integração | Cache HTTP: GET hit/miss respeitando TTL |  | Pendente |  |  |
+| 24 | backend | Regressão | Suíte async verde + test_balance_regression_full_flow verde após migração async | tests/ (suite completa, pytest-asyncio modo auto) + tests/test_balance_regression.py | Concluída | 2026-06-03 | 257 testes verdes; cobertura 95.88%; test_balance_regression_full_flow verde. |
+| 24 | backend | Integração | UoW: 2 operações na mesma transação, erro na 2ª -> rollback total | tests/test_uow.py | Concluída | 2026-06-03 | 2 ops no mesmo request: caminho feliz commita ambas; erro na 2a faz rollback total (saldo inalterado). 2 testes verdes. |
+| 24 | banco | Migração | Índices novos: upgrade/downgrade reversível; query usa o índice | tests/test_db_indices.py | Concluída | 2026-06-03 | upgrade/downgrade reversivel (sqlite isolado); EXPLAIN usa ix_budgets_user_id_month_year, ix_transactions_user_id_date (sqlite) e ix_transactions_description_trgm GIN (Postgres). 3 testes verdes. |
+| 25 | mobile | Unit | Models freezed: fromJson/toJson round-trip | test/data/models_roundtrip_test.dart | Concluída | 2026-06-03 | 8 testes: paridade de campos + fromJson/toJson round-trip dos 9 models (Transaction/Page/Account/Category/AccountFull/CategoryFull/Budget*/Goal). |
+| 25 | mobile | Widget | AsyncView nos 3 estados (loading/empty/error) | test/shared/widgets/async_view_test.dart | Concluída | 2026-06-03 | 5 testes widget: LoadingView/EmptyView/ErrorView (3 estados) + onRetry + variante scrollable. Telas usam o componente; trios duplicados eliminados. |
+| 25 | mobile | Integração | Cache HTTP: GET hit/miss respeitando TTL | mobile: test/core/network/http_cache_test.dart; backend: tests/test_cache_headers.py | Concluída | 2026-06-03 | Hit dentro do TTL nao refaz HTTP; mutacao invalida (miss). Backend envia Cache-Control: private, max-age=30 em GET 2xx (exceto health/metrics). Smoke manual APK nao executado. |
 | 26 | painel | Unit | Services com mock api.py + invalidação de cache pós-mutação |  | Pendente |  |  |
 | 26 | painel | Unit | transaction_form em modos create e edit |  | Pendente |  |  |
 | 27 | mobile | Widget | i18n renderiza em PT e EN [OPCIONAL] |  | Pendente |  |  |

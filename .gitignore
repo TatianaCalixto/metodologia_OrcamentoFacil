@@ -24,6 +24,9 @@ build/
 dist/
 *.egg-info/
 
+# --- Artefatos de teste (SQLite efêmero da suíte backend) ---
+*.db
+
 # --- IDE / OS ---
 .vscode/
 .idea/
