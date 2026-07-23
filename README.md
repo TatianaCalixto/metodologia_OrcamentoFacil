@@ -10,9 +10,11 @@ O OrçaFácil é um app de controle financeiro pessoal (backend FastAPI, mobile 
 
 1. **Blueprint** ([orcafacil_blueprint_completo.md](orcafacil_blueprint_completo.md)) — visão funcional escrita uma vez, evolui pouco.
 2. **Planejamento estruturado** — blueprint vira sprints + tarefas + critérios de aceitação + **testes obrigatórios** numa planilha que serve de fonte única de verdade. Versão legível: [docs/sprints_index.md](docs/sprints_index.md).
-3. **Prompt do agente executor** ([PROMPT_INICIAL_CLAUDE_CODE.md](PROMPT_INICIAL_CLAUDE_CODE.md)) — outro chat do Claude Code recebe regras inegociáveis: sem teste verde, tarefa não fecha; em dúvida, parar e perguntar; nunca decidir fora da planilha.
+3. **Prompt do agente executor** — outro chat do Claude Code recebe regras inegociáveis: sem teste verde, tarefa não fecha; em dúvida, parar e perguntar; nunca decidir fora da planilha.
 4. **Análise por papéis ao fim de cada fase** ([analise_po_ux_ui_orcafacil.md](analise_po_ux_ui_orcafacil.md)) — PO, UX, UI (e outros, conforme a fase) revisam o estado e propõem a próxima fase.
 5. **Iteração** — análise vira novas sprints na planilha → novo prompt do executor → ciclo se repete.
+
+> O detalhamento operacional completo (o prompt do agente executor, os scripts que geram a planilha e o catálogo de papéis) fica fora deste repositório, num kit de trabalho privado. Aqui fica o estudo de caso: o método explicado, a evidência de que funcionou e os aprendizados reais.
 
 ---
 
@@ -33,13 +35,12 @@ O OrçaFácil é um app de controle financeiro pessoal (backend FastAPI, mobile 
 | Documento | O que é |
 |---|---|
 | [orcafacil_blueprint_completo.md](orcafacil_blueprint_completo.md) | Blueprint funcional do produto — escrito uma vez |
-| [PROMPT_INICIAL_CLAUDE_CODE.md](PROMPT_INICIAL_CLAUDE_CODE.md) | Prompt-modelo do agente executor (com regras inegociáveis) |
 | [analise_po_ux_ui_orcafacil.md](analise_po_ux_ui_orcafacil.md) | Análise de fim de Fase 1 pelos papéis Product Owner, UX e UI Designer (motivou a Fase 2) |
 | [analise_architect_qa_security_devops_orcafacil.md](analise_architect_qa_security_devops_orcafacil.md) | Análise de fim de Fase 2 pelos papéis Software Architect, QA, Security e DevOps Engineers (motivou a Fase 3) |
 | [analise_backend_mobile_frontend_orcafacil.md](analise_backend_mobile_frontend_orcafacil.md) | Análise de engenharia (Backend/Mobile/Frontend) sobre qualidade de código sustentável — motivou e detalhou a **Fase 4** (achados P1-P14) |
 | [analise_pm_roadmap_orcafacil.md](analise_pm_roadmap_orcafacil.md) | Análise de produto (PM) com o roadmap das próximas fases (4 a 7); reforçou a abertura da Fase 4 antes das fases de produto (DEC-010) |
-| [papeis_ideais_produto_orcafacil.md](papeis_ideais_produto_orcafacil.md) | Catálogo de papéis ideais (PO, UX, UI, Architect, QA, Security, DevOps, etc.) usado como referência para conduzir as análises de fim de fase |
-| [orcafacil_planejamento_sprints.xlsx](orcafacil_planejamento_sprints.xlsx) | Planilha de planejamento (fonte única de verdade operacional) |
+
+A planilha de planejamento (fonte única de verdade operacional), o prompt do agente executor e o catálogo de papéis fazem parte do kit de trabalho privado — não ficam neste repositório público. A versão renderizada e legível da planilha está na tabela abaixo.
 
 ### Planejamento renderizado (legível no GitHub)
 
@@ -52,13 +53,6 @@ O OrçaFácil é um app de controle financeiro pessoal (backend FastAPI, mobile 
 | [docs/sprints_decisoes.md](docs/sprints_decisoes.md) | Log de decisões técnicas |
 | [docs/sprints_impedimentos.md](docs/sprints_impedimentos.md) | Log de impedimentos — 4 casos reais em que o agente parou, perguntou e aguardou decisão (incl. IMP-004 na Fase 4: conflito entre dois critérios de aceitação) |
 | [docs/sprints_instrucoes.md](docs/sprints_instrucoes.md) | Protocolo de uso da planilha pelo agente |
-
-### Scripts
-
-| Script | O que faz |
-|---|---|
-| [gerar_planilha_sprints.py](gerar_planilha_sprints.py) | Gera a planilha XLSX a partir das definições de sprints/tarefas/testes em Python |
-| [adicionar_sprints_17_18_19.py](adicionar_sprints_17_18_19.py) | Anexa as sprints da Fase 2 na planilha existente, preservando o tracking da Fase 1 |
 
 ### Código (repositórios irmãos)
 
@@ -81,38 +75,27 @@ Controle financeiro pessoal: cadastro de contas e categorias, lançamento de rec
 .
 ├── README.md                                 # você está aqui
 ├── orcafacil_blueprint_completo.md           # blueprint funcional
-├── PROMPT_INICIAL_CLAUDE_CODE.md             # prompt do agente executor
 ├── analise_po_ux_ui_orcafacil.md             # análise de fim de Fase 1 (PO/UX/UI)
 ├── analise_architect_qa_security_devops_orcafacil.md  # análise de fim de Fase 2 (Architect/QA/Security/DevOps)
 ├── analise_backend_mobile_frontend_orcafacil.md       # análise de engenharia (motivou a Fase 4)
 ├── analise_pm_roadmap_orcafacil.md           # análise de produto (PM) — roadmap Fases 4 a 7
-├── papeis_ideais_produto_orcafacil.md        # catálogo de papéis (referência das análises)
-├── orcafacil_planejamento_sprints.xlsx       # planilha (fonte única de verdade)
-├── gerar_planilha_sprints.py                 # gera a planilha do zero
-├── adicionar_sprints_17_18_19.py             # anexa Fase 2 sem destruir Fase 1
-├── adicionar_sprints_20_21_22_23.py          # anexa Fase 3 + DEC-003 (auto-commit docs)
-├── docs/                                     # planilha renderizada em MD
-│   ├── sprints_index.md
-│   ├── sprints_visao_geral.md
-│   ├── sprints_backlog.md
-│   ├── sprints_plano_testes.md
-│   ├── sprints_decisoes.md
-│   ├── sprints_impedimentos.md
-│   └── sprints_instrucoes.md
-├── backend_OrcamentoFacil/                   # repo do backend + painel
-└── frontend_OrcamentoFacil/                  # repo do mobile
+└── docs/                                     # planilha renderizada em MD
+    ├── sprints_index.md
+    ├── sprints_visao_geral.md
+    ├── sprints_backlog.md
+    ├── sprints_plano_testes.md
+    ├── sprints_decisoes.md
+    ├── sprints_impedimentos.md
+    └── sprints_instrucoes.md
 ```
+
+O código gerado por este método vive em repositórios próprios: [backend_OrcamentoFacil](https://github.com/TatianaCalixto/backend_OrcamentoFacil) e [frontend_OrcamentoFacil](https://github.com/TatianaCalixto/frontend_OrcamentoFacil).
 
 ---
 
-## Como reproduzir o método em outro projeto
+## Sobre reproduzir o método
 
-1. **Escreva o blueprint funcional** (1 arquivo MD, 1 a 5 páginas — o que o produto faz, sem decisões de implementação).
-2. **Gere a planilha de sprints** a partir do blueprint, com tarefas + critérios + dependências + testes obrigatórios. (Skill `sprint-planning` automatiza isso.)
-3. **Gere o prompt do agente executor** apontando para a planilha como fonte única de verdade, com regras inegociáveis.
-4. **Abra um chat do Claude Code** com o prompt, deixe ele rodar tarefa por tarefa, marcando status na planilha.
-5. **Ao fim de cada fase**, conduza análise pelos papéis que fizerem sentido (PO, UX, UI, Architect, QA, Security, etc.). (Skill `phase-review` automatiza isso.)
-6. **Anexe novas sprints** na planilha (preservando tracking da fase anterior) e atualize o prompt do executor para a próxima fase. Ciclo se repete.
+O ciclo é, em linhas gerais, blueprint → planejamento estruturado em sprints com critério e teste obrigatórios → execução por um agente com regras travadas → análise por papéis ao fim de cada fase → nova rodada. O prompt exato do agente executor, os scripts de geração da planilha e o catálogo de papéis usado nas análises são o meu kit de trabalho — entrego e aplico isso quando contratada, não ficam publicados aqui.
 
 ---
 
