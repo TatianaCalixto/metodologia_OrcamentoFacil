@@ -1,9 +1,11 @@
 # OrçaFácil — Análise Architect / QA / Security / DevOps (Fim da Fase 2)
 
+> **Registro histórico — maio de 2026.** Esta análise documenta problemas identificados naquela etapa do projeto. Várias recomendações foram implementadas nas fases seguintes. Para o estado atual, consulte os READMEs do [backend](https://github.com/TatianaCalixto/backend_OrcamentoFacil) e do [app mobile](https://github.com/TatianaCalixto/frontend_OrcamentoFacil).
+
 **Data:** 2026-05-24
 **Escopo:** revisão técnica após o fechamento da Fase 2 (Sprints 17-19 concluídas — gestão de Contas, painel com cadastro completo, polimento UX/UI).
 **Papéis:** Software Architect, QA Engineer, Security Engineer, DevOps Engineer.
-**Base:** [blueprint](orcafacil_blueprint_completo.md), [planilha de planejamento](orcafacil_planejamento_sprints.xlsx), [análise PO/UX/UI anterior](analise_po_ux_ui_orcafacil.md), código em `backend_OrcamentoFacil/` e `frontend_OrcamentoFacil/`.
+**Base:** [blueprint](orcafacil_blueprint_completo.md), [planilha de planejamento](docs/sprints_index.md), [análise PO/UX/UI anterior](analise_po_ux_ui_orcafacil.md), código em `backend_OrcamentoFacil/` e `frontend_OrcamentoFacil/`.
 
 ---
 

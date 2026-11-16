@@ -1,8 +1,10 @@
 # OrçaFácil — Análise PO / UX / UI
 
+> **Registro histórico — maio de 2026.** Esta análise documenta problemas identificados naquela etapa do projeto. Várias recomendações foram implementadas nas fases seguintes. Para o estado atual, consulte os READMEs do [backend](https://github.com/TatianaCalixto/backend_OrcamentoFacil) e do [app mobile](https://github.com/TatianaCalixto/frontend_OrcamentoFacil).
+
 **Data:** 2026-05-24
 **Escopo:** revisão do produto a partir dos papéis de Product Owner, UX Designer e UI Designer.
-**Base:** [blueprint](orcafacil_blueprint_completo.md), [planejamento de sprints](orcafacil_planejamento_sprints.xlsx) e código já implementado em `backend_OrcamentoFacil/` (backend + painel Streamlit) e `frontend_OrcamentoFacil/mobile/` (Flutter).
+**Base:** [blueprint](orcafacil_blueprint_completo.md), [planejamento de sprints](docs/sprints_index.md) e código já implementado em `backend_OrcamentoFacil/` (backend + painel Streamlit) e `frontend_OrcamentoFacil/mobile/` (Flutter).
 
 ---
 
@@ -230,7 +232,7 @@ Proposta de sprint dedicada a isso na seção 8.
 
 ## 8. Sprints propostas — Próxima fase
 
-Sugestão de estrutura, sem mexer no que já está concluído. Cada sprint segue o mesmo formato do planejamento existente (ID, descrição, critérios, dependências, testes obrigatórios). A versão definitiva entra na planilha [orcafacil_planejamento_sprints.xlsx](orcafacil_planejamento_sprints.xlsx) como Sprints 17, 18 e 19.
+Sugestão de estrutura, sem mexer no que já está concluído. Cada sprint segue o mesmo formato do planejamento existente (ID, descrição, critérios, dependências, testes obrigatórios). A versão definitiva entra na planilha [planilha de planejamento](docs/sprints_index.md) como Sprints 17, 18 e 19.
 
 ### Sprint 17 — Gestão de Contas (mobile + painel) — fechar P1
 

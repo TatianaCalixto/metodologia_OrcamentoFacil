@@ -1,9 +1,11 @@
 # OrçaFácil — Análise Backend / Mobile / Frontend Engineer (Pré-Fase 4)
 
+> **Registro histórico — maio de 2026.** Esta análise documenta problemas identificados naquela etapa do projeto. Várias recomendações foram implementadas nas fases seguintes. Para o estado atual, consulte os READMEs do [backend](https://github.com/TatianaCalixto/backend_OrcamentoFacil) e do [app mobile](https://github.com/TatianaCalixto/frontend_OrcamentoFacil).
+
 **Data:** 2026-05-24
 **Escopo:** revisão técnica focada em **qualidade de código, padrões de implementação e produtividade do desenvolvedor**, pelos papéis de **engenheiros de implementação**. Diferente da análise técnica anterior (Architect/QA/Security/DevOps, que olhou infra e governance), aqui olhamos o **código que o engenheiro escreve no dia a dia**.
 **Papéis:** Backend Engineer (Python/FastAPI), Mobile Engineer (Flutter), Frontend/Web Engineer (Streamlit).
-**Base:** [blueprint](orcafacil_blueprint_completo.md), [planilha](orcafacil_planejamento_sprints.xlsx), análises anteriores ([PO/UX/UI](analise_po_ux_ui_orcafacil.md) e [Architect/QA/Security/DevOps](analise_architect_qa_security_devops_orcafacil.md)), código em `backend_OrcamentoFacil/` e `frontend_OrcamentoFacil/`.
+**Base:** [blueprint](orcafacil_blueprint_completo.md), [planilha](docs/sprints_index.md), análises anteriores ([PO/UX/UI](analise_po_ux_ui_orcafacil.md) e [Architect/QA/Security/DevOps](analise_architect_qa_security_devops_orcafacil.md)), código em `backend_OrcamentoFacil/` e `frontend_OrcamentoFacil/`.
 
 > ⚠️ A Fase 3 (hardening técnico) está planejada mas ainda não executada. Esta análise olha o estado **atual** e identifica problemas que **persistirão mesmo após a Fase 3** — ou seja, problemas de qualidade de código que a Fase 3 (focada em segurança/infra/observabilidade) não cobre.
 

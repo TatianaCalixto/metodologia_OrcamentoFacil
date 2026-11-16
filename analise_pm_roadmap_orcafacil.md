@@ -1,9 +1,11 @@
 # OrçaFácil — Análise de Produto e Roadmap (Product Manager)
 
+> **Registro histórico — junho de 2026.** Esta análise documenta problemas identificados naquela etapa do projeto. Várias recomendações foram implementadas nas fases seguintes. Para o estado atual, consulte os READMEs do [backend](https://github.com/TatianaCalixto/backend_OrcamentoFacil) e do [app mobile](https://github.com/TatianaCalixto/frontend_OrcamentoFacil).
+
 **Data:** 2026-06-03
 **Papel:** Product Manager (PM)
 **Escopo:** revisão do produto após o fechamento da **Fase 3** (hardening técnico — DEC-009) para definir as **próximas fases, sprints e features** que entram na planilha e mantêm o agente executor trabalhando.
-**Base:** [blueprint](orcafacil_blueprint_completo.md), [planilha de planejamento](orcafacil_planejamento_sprints.xlsx), e as análises anteriores — [PO/UX/UI](analise_po_ux_ui_orcafacil.md), [Architect/QA/Security/DevOps](analise_architect_qa_security_devops_orcafacil.md) e [Backend/Mobile/Frontend](analise_backend_mobile_frontend_orcafacil.md).
+**Base:** [blueprint](orcafacil_blueprint_completo.md), [planilha de planejamento](docs/sprints_index.md), e as análises anteriores — [PO/UX/UI](analise_po_ux_ui_orcafacil.md), [Architect/QA/Security/DevOps](analise_architect_qa_security_devops_orcafacil.md) e [Backend/Mobile/Frontend](analise_backend_mobile_frontend_orcafacil.md).
 
 > ⚠️ Este é um **documento de proposta**, não execução. Nenhuma sprint abaixo entra na planilha até você aprovar quais entram, quais ficam para depois e quais descarta.
 
